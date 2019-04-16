@@ -1,6 +1,6 @@
 docker-compose-yaml: docker-compose.yml
 
-project: denpal-example
+project: laravel-example
 
 tasks:
 #   pre-rollout:
