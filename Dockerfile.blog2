@@ -1,6 +1,6 @@
 #ARG CLI_IMAGE
 #FROM ${CLI_IMAGE} as cli
-FROM php/7.3.4-fpm-stretch
+FROM php:7.3.4-fpm-stretch
 #FROM amazeeio/php:7.2-fpm
 #FROM amazeeio/php:7.2-cli-drupal
 
@@ -15,6 +15,9 @@ COPY blog2 /app
 COPY composer.json /app
 COPY scripts /app/scripts
 #RUN ln -s /app /application
+
+RUN apt-get update
+RUN apt-get install -y git
 RUN rm -f /app/composer.lock
 RUN type composer
 RUN ls -al /app
