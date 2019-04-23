@@ -44,7 +44,7 @@
         docker-compose exec -T blog cat .env
         echo docker-compose exec -T blog ls -al storage/logs
         echo docker-compose exec -T blog cat storage/logs/laravel-2019-04-23.log
-        docker-compose exec -T nginx curl http://nginx:8000 -v
+        docker-compose exec -T blog curl http://nginx:8000 -v
         docker-compose down
         '''
       }
