@@ -13,6 +13,7 @@
         sh """
         docker login --username amazeeiojenkins --password $DOCKER_CREDS
         docker ps | head
+        docker ps  |grep 8000
         """
       }
     }
