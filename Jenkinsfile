@@ -36,6 +36,8 @@
         sh '''
         docker-compose exec -T blog php -r \"file_exists('.env') || copy('.env.example', '.env');\"
         echo docker-compose exec -T blog php artisan key:generate --ansi
+        docker-compose exec -T blog ls -al storage/logs
+        docker-compose exec -T blog cat storage/logs/laravel-2019-04-23.log
         docker-compose exec -T blog curl http://nginx:8000 -v
         docker-compose down
         '''
