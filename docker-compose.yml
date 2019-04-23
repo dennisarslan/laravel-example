@@ -47,8 +47,8 @@ services:
     #  - container:amazeeio-ssh-agent
     environment:
       << : *default-environment # loads the defined environment variables from the top
-    ports:
-      - "9000:9000"
+    # ports:
+    #  - "9000:9000"
 
   nginx:
     image: nginx:alpine
