@@ -34,6 +34,8 @@
     stage('Verification') {
       steps {
         sh '''
+        docker-compose exec -T blog php -r \"file_exists('.env') || copy('.env.example', '.env');\"
+        docker-compose exec -T blog php artisan key:generate --ansi
         docker-compose exec -T blog curl http://nginx:8000 -v
         docker-compose down
         '''
