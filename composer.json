@@ -22,7 +22,7 @@
         ]
     },
     "require": {
-	"dennis00/laravel-distro": "dev-master@dev",
-        "drutiny/drutiny": "2.3.*@dev"
+        "dennis00/laravel-distro": "dev-master@dev",
+        "laravel/horizon": "^4.0@dev"
     }
 }
