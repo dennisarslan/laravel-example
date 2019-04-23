@@ -53,6 +53,8 @@ services:
       - "9000"
     # ports:
     #  - "9000:9000"
+    networks:
+      - amazeeio-network
 
   nginx:
     image: nginx:alpine
@@ -65,3 +67,9 @@ services:
       - ./:/application:cached
     depends_on:
       - blog
+    networks:
+      - amazeeio-network
+
+networks:
+  amazeeio-network:
+    external: true
