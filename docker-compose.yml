@@ -2,7 +2,7 @@ version: '2.3'
 
 x-lagoon-project:
   # Lagoon project name (leave `&lagoon-project` when you edit this)
-  &lagoon-project laravel-distro
+  &lagoon-project laravel-example
   &cli-image laravel-distro
 
 x-volumes:
@@ -37,7 +37,7 @@ services:
       dockerfile: Dockerfile.blog2
       args:
         CLI_IMAGE: amazeeiodevelopment/laravel-distro
-    image: laravel-distro
+    image: laravel-example
     labels:
       # Lagoon Labels
       lagoon.type: cli-persistent
