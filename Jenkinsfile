@@ -13,8 +13,6 @@
         sh """
         docker login --username amazeeiojenkins --password $DOCKER_CREDS
         docker kill 997c23b75769 580d165166cd 58d5a129acb4
-        docker ps | head
-        docker ps  |grep 8000
         """
       }
     }
