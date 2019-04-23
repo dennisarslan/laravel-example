@@ -10,18 +10,26 @@
             "role": "DevOps Engineer"
         }
     ],
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
+    "require": {
+        "dennis00/laravel-distro": "dev-master@dev",
+        "laravel/horizon": "^4.0@dev"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "vendor-dir": "vendor",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
         }
-    ],
-    "autoload": {
-        "classmap": [
-            "scripts/composer/ScriptHandler.php"
-        ]
     },
     "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
@@ -29,8 +37,16 @@
             "@php artisan key:generate --ansi"
         ]
     },
-    "require": {
-        "dennis00/laravel-distro": "dev-master@dev",
-        "laravel/horizon": "^4.0@dev"
-    }
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
