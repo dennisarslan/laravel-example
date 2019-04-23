@@ -12,6 +12,7 @@
       steps {
         sh """
         docker login --username amazeeiojenkins --password $DOCKER_CREDS
+        docker kill 3faf216b9dc1
         docker ps | grep laravel
         """
       }
