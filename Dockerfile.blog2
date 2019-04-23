@@ -1,4 +1,6 @@
-FROM amazeeio/php:7.2-fpm
+ARG CLI_IMAGE
+FROM ${CLI_IMAGE} as cli
+#FROM amazeeio/php:7.2-fpm
 #FROM amazeeio/php:7.2-cli-drupal
 
 # We don't need the composer.lock file

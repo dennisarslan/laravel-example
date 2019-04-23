@@ -35,6 +35,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.blog2
+      args:
+        CLI_IMAGE: amazeeiodevelopment/laravel-distro
     image: laravel-distro
     labels:
       # Lagoon Labels
