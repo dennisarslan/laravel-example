@@ -21,6 +21,18 @@
             "scripts/composer/ScriptHandler.php"
         ]
     },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    },
     "require": {
         "dennis00/laravel-distro": "dev-master@dev",
         "laravel/horizon": "^4.0@dev"
