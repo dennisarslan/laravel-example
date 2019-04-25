@@ -18,7 +18,7 @@ x-environment:
   &default-environment
     LAGOON_PROJECT: *lagoon-project
     # Route that should be used locally, if you are using pygmy, this route *must* end with .docker.amazee.io
-    LAGOON_ROUTE: http://laravel-distro.docker.amazee.io
+    LAGOON_ROUTE: http://laravel-example.docker.amazee.io
     # Uncomment if you like to have the system behave like in production
     #LAGOON_ENVIRONMENT_TYPE: production
     # Uncomment to enable xdebug and then restart via `docker-compose up -d`
@@ -40,28 +40,28 @@ services:
     image: laravel-example
     # labels:
       # Lagoon Labels
-      # lagoon.type: cli-persistent
-      # lagoon.persistent.name: nginx # mount the persistent storage of nginx into this container
-      # lagoon.persistent: /app/public/ # location where the persistent storage should be mounted
-      # << : *default-volumes # loads the defined volumes from the top
-    user: root
-    # volumes_from: # mount the ssh-agent from the pygmy or cachalot ssh-agent
-    #  - container:amazeeio-ssh-agent
+      lagoon.type: cli-persistent
+      lagoon.persistent.name: nginx # mount the persistent storage of nginx into this container
+      lagoon.persistent: /opt/test/ # location where the persistent storage should be mounted
+    << : *default-volumes # loads the defined volumes from the top
+    << : *default-user # uses the defined user from top
     environment:
       << : *default-environment # loads the defined environment variables from the top
     ports:
       - "9000"
-    # ports:
-    #  - "9000:9000"
     networks:
       - amazeeio-network
+      - default
 
   nginx:
     image: nginx:alpine
-    # ports:
-    # - "8000:8000"
     ports:
       - "8000"
+    labels:
+      lagoon.type: nginx-php-persistent
+      lagoon.persistent: /opt/test # define where the persistent storage should be mounted too
+    << : *default-volumes # loads the defined volumes from the top
+    << : *default-user # uses the defined user from top
     volumes:
       - .cloud/nginx.conf:/etc/nginx/conf.d/default.conf:cached
       - ./:/application:cached
@@ -69,6 +69,7 @@ services:
       - blog
     networks:
       - amazeeio-network
+      - default
 
 networks:
   amazeeio-network:
