@@ -54,7 +54,8 @@ services:
       - default
 
   nginx:
-    image: nginx:alpine
+    # image: nginx:alpine
+    image: denpal_nginx
     ports:
       - "8000"
     labels:
