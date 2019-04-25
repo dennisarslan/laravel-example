@@ -6,6 +6,7 @@ FROM amazeeio/php:7.2-fpm
 # COPY composer.json composer.lock /app/
 #COPY scripts /app/scripts
 
+
 # Installing composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
