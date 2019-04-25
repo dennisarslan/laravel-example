@@ -38,12 +38,12 @@ services:
       args:
         CLI_IMAGE: amazeeiodevelopment/laravel-distro
     image: laravel-example
-    labels:
+    # labels:
       # Lagoon Labels
-      lagoon.type: cli-persistent
-      lagoon.persistent.name: nginx # mount the persistent storage of nginx into this container
-      lagoon.persistent: /app/public/ # location where the persistent storage should be mounted
-    << : *default-volumes # loads the defined volumes from the top
+      # lagoon.type: cli-persistent
+      # lagoon.persistent.name: nginx # mount the persistent storage of nginx into this container
+      # lagoon.persistent: /app/public/ # location where the persistent storage should be mounted
+      # << : *default-volumes # loads the defined volumes from the top
     user: root
     # volumes_from: # mount the ssh-agent from the pygmy or cachalot ssh-agent
     #  - container:amazeeio-ssh-agent
