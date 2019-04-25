@@ -38,7 +38,7 @@ services:
       args:
         CLI_IMAGE: amazeeiodevelopment/laravel-distro
     image: laravel-example
-    # labels:
+    labels:
       # Lagoon Labels
       lagoon.type: cli-persistent
       lagoon.persistent.name: nginx # mount the persistent storage of nginx into this container
