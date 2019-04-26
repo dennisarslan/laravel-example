@@ -34,16 +34,24 @@
     }
     stage('Verification') {
       steps {
-        sh '''
-        docker-compose exec -T blog php -r \"file_exists('.env') || copy('.env.example', '.env');\"
-        docker-compose exec -T blog php artisan key:generate --ansi
-        docker-compose exec -T blog php public/index.php
-        docker-compose exec -T blog cat .env
-        echo docker-compose exec -T blog ls -al storage/logs
-        echo docker-compose exec -T blog cat storage/logs/laravel-2019-04-23.log
-        docker-compose exec -T blog curl http://nginx:8000 -v
-        docker-compose down
-        '''
+        script {
+          try {
+            sh '''
+            docker-compose exec -T blog php -r \"file_exists('.env') || copy('.env.example', '.env');\"
+            docker-compose exec -T blog php artisan key:generate --ansi
+            docker-compose exec -T blog php public/index.php
+            docker-compose exec -T blog cat .env
+            echo docker-compose exec -T blog ls -al storage/logs
+            echo docker-compose exec -T blog cat storage/logs/laravel-2019-04-23.log
+            docker-compose exec -T blog curl http://nginx:8000 -v
+            docker-compose down
+            '''
+          }
+          catch (e) {
+            sh 'docker-compose down'
+            throw e
+          }
+        }
       }
     }
   }

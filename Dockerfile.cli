@@ -1,0 +1,17 @@
+FROM amazeeiodevelopment/laravel
+
+# Installing composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+COPY blog2 /app
+COPY composer.json /app
+
+# Installing PHP dependencies
+RUN docker-php-ext-install pcntl
+
+# Misc
+RUN rm -f /app/composer.lock
+RUN composer install --dev
+
+# Define where the Laravel Root is located
+ENV WEBROOT=public
