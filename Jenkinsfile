@@ -43,7 +43,7 @@
             docker-compose exec -T cli cat .env
             echo docker-compose exec -T cli ls -al storage/logs
             echo docker-compose exec -T cli cat storage/logs/laravel-2019-04-23.log
-            docker-compose exec -T cli curl http://nginx:8000 -v
+            echo docker-compose exec -T cli curl http://nginx:8000 -v
             docker-compose down
             '''
           }
